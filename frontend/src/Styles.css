@@ -1,0 +1,44 @@
+textarea {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  display: block;
+  height: 48.5em;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0.25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+textarea.numerado {
+    background: url(http://i.imgur.com/2cOaJ.png);
+    background-attachment: local;
+    background-repeat: no-repeat;
+    padding-left: 30px;
+    padding-top: 10px;
+    line-height: 16px;
+    background-color: #fff;
+    color: #272b30;
+
+}
+
+textarea.consola {
+  background-color: #272822;
+  color: #fff;
+}
+
+div.esp{
+  padding-top: 10px;
+}
+
+img.imageast{
+  width: 90%;
+  margin: 0 auto;
+  display: block;
+}
