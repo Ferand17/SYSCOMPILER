@@ -1,36 +1,5 @@
 import axios from "axios";
 
-const prueba2 = [
-    {
-        'no': '1'
-        , 'tipo': 'elder'
-        , 'error': 'elder'
-        , 'fila': 'elder'
-        , 'columna': 'elder'
-    },
-    {
-        'no': '2'
-        , 'tipo': 'elder'
-        , 'error': 'elder'
-        , 'fila': 'elder'
-        , 'columna': 'elder'
-    },
-    {
-        'no': '3'
-        , 'tipo': 'elder'
-        , 'error': 'elder'
-        , 'fila': 'elder'
-        , 'columna': 'elder'
-    },
-    {
-        'no': '4'
-        , 'tipo': 'elder'
-        , 'error': 'elder'
-        , 'fila': 'elder'
-        , 'columna': 'elder'
-    }
-]
-
 let numero = 1;
 export const creartextarea = () => {
     numero++;
@@ -71,33 +40,41 @@ export const ejecutar = async () => {
     const objeto = {'entrada':getTextOFTextArea()}
     await axios.post('http://localhost:5000/entrada',objeto)
     const getSalida= await axios.get('http://localhost:5000/salida')
-    setConsola(getSalida.data)
+    const errores = getSalida.data.errores;
+    const simbolos = getSalida.data.simbolos;
+    console.log(getSalida.data.ast)
+    setConsola(getSalida.data.salida);
     const tablaerrores = document.getElementById('contenidoErrores')
     while (tablaerrores?.firstChild) {
         tablaerrores.removeChild(tablaerrores.lastChild as any);
     }
-    for(let p of prueba2){
+    let iterarerror=0;
+    for(let p of errores){
+        iterarerror++;
         const tupla = document.createElement('tr')
         tupla.className="table-primary"
-        tupla.innerHTML=`<td>${p.no}</td>
+        tupla.innerHTML=`<td>${iterarerror}</td>
         <td>${p.tipo}</td>
         <td>${p.error}</td>
         <td>${p.fila}</td>
-        <td>${p.columna}</td>`
+        <td>${p.column}</td>`
         tablaerrores?.appendChild(tupla)
     }
     const tablaSimbolos = document.getElementById('contenidoSimbolos')
     while (tablaSimbolos?.firstChild) {
         tablaSimbolos.removeChild(tablaSimbolos.lastChild as any);
     }
-    for(let p of prueba2){
+    let iterarsimbolos = 0;
+    for(let p of simbolos){
+        iterarsimbolos++;
         const tupla = document.createElement('tr')
         tupla.className="table-primary"
-        tupla.innerHTML=`<td>${p.no}</td>
+        tupla.innerHTML=`<td>${iterarsimbolos}</td>
+        <td>${p.id}</td>
+        <td>${p.tipoS}</td>
         <td>${p.tipo}</td>
-        <td>${p.error}</td>
+        <td>${p.entorno}</td>
         <td>${p.fila}</td>
-        <td>${p.columna}</td>
         <td>${p.columna}</td>`
         tablaSimbolos?.appendChild(tupla)
     }

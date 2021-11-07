@@ -157,7 +157,7 @@ INSTRUCCION
     $$ = {'label':'return', 'valor':$2};
   }
   | return punto_coma{
-    $$ = {'label':'return', 'valor':null};
+    $$ = {'label':'return', 'valor':''};
   }
   | SENTFUN{
     $$ = $1;
@@ -422,7 +422,7 @@ SENTIF
     $$ = {'label':'if','comparacion':$3,'instrucciones':$6,'else':$9}
   }
   | if par_izq EXP par_der llave_izq INSTRUCCIONES llave_der{
-    $$ = {'label':'if','comparacion':$3,'instrucciones':$6,'else':null}
+    $$ = {'label':'if','comparacion':$3,'instrucciones':$6,'else':''}
   }
 ;
 
@@ -480,7 +480,7 @@ SENTDOW
 
 SENTFUN
   : TIPODATO id par_izq par_der llave_izq INSTRUCCIONES llave_der{
-    $$ = {'label':'funcion','id':$2,'tipo':$1,'variables':null,'instrucciones':$6,'linea':@1.first_line,'columna':@1.first_column}
+    $$ = {'label':'funcion','id':$2,'tipo':$1,'variables':'','instrucciones':$6,'linea':@1.first_line,'columna':@1.first_column}
   }
   | TIPODATO id par_izq LISTAPARAM par_der llave_izq INSTRUCCIONES llave_der{
     $$ = {'label':'funcion','id':$2,'tipo':$1,'variables':$4,'instrucciones':$7,'linea':@1.first_line,'columna':@1.first_column}

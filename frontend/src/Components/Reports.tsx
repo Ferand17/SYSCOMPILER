@@ -1,15 +1,16 @@
-import React, { useState } from 'react'
-import Viewer from 'react-viewer';
-import image from '../Assets/compilation.png'
+import React,{useState} from 'react'
+import ReactJson from 'react-json-view';
+import axios from 'axios'
 const Reports = () => {
 
     //Visualizacion de AST
-    const [imageVisible, setImageVisible] = useState(false);
-    const images = [
-        {src:image}
-    ]
+    const [mijson,setMijson] = useState({})
+    const reportero = async ()=>{
+        const getSalida= await axios.get('http://localhost:5000/salida')
+        const errores = getSalida.data.ast;
+        setMijson(errores);
+    }
     
-
     return (
         <div className='col'>
             <ul className="nav nav-tabs">
@@ -20,7 +21,7 @@ const Reports = () => {
                     <a className="nav-link" data-bs-toggle="tab" href="#errores">Errores</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" data-bs-toggle="tab" href="#ast">AST</a>
+                    <a className="nav-link" data-bs-toggle="tab" href="#ast"onClick={reportero} >AST</a>
                 </li>
                 <li className="nav-item">
                     <a className="nav-link" data-bs-toggle="tab" href="#simbolo">Simbolos</a>
@@ -50,14 +51,7 @@ const Reports = () => {
                     </table>
                 </div>
                 <div className="tab-pane fade" id="ast">
-                    <Viewer
-                        visible={imageVisible}
-                        onClose={() => {
-                            setImageVisible(false)
-                        }}
-                        images={images}
-                    />
-                    <img className='imageast' src={image} onClick={() => setImageVisible(true)} alt='i' />
+                    <ReactJson src={mijson} />                   
                 </div>
                 <div className="tab-pane fade" id="simbolo">
                     <table className="table table-hover">
@@ -66,9 +60,10 @@ const Reports = () => {
                                 <th scope="col">No.</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Tipo Valor</th>
+                                <th scope="col">tipo</th>
+                                <th scope="col">entorno</th>
                                 <th scope="col">Fila</th>
                                 <th scope="col">Columna</th>
-                                <th scope="col">Ambito</th>
                             </tr>
                         </thead>
                         <tbody id='contenidoSimbolos'>

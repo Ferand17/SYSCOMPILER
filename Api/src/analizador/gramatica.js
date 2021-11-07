@@ -127,7 +127,7 @@ case 16:
 break;
 case 17:
 
-    this.$ = {'label':'return', 'valor':null};
+    this.$ = {'label':'return', 'valor':''};
   
 break;
 case 22:
@@ -286,7 +286,7 @@ case 90:
 break;
 case 91:
 
-    this.$ = {'label':'if','comparacion':$$[$0-4],'instrucciones':$$[$0-1],'else':null}
+    this.$ = {'label':'if','comparacion':$$[$0-4],'instrucciones':$$[$0-1],'else':''}
   
 break;
 case 92:
@@ -326,7 +326,7 @@ case 100:
 break;
 case 101:
 
-    this.$ = {'label':'funcion','id':$$[$0-5],'tipo':$$[$0-6],'variables':null,'instrucciones':$$[$0-1],'linea':_$[$0-6].first_line,'columna':_$[$0-6].first_column}
+    this.$ = {'label':'funcion','id':$$[$0-5],'tipo':$$[$0-6],'variables':'','instrucciones':$$[$0-1],'linea':_$[$0-6].first_line,'columna':_$[$0-6].first_column}
   
 break;
 case 102:
@@ -1153,7 +1153,7 @@ return new Parser;
 
 
 if (typeof require !== 'undefined' && typeof exports !== 'undefined') {
-    exports.errores = errores_ast;
+exports.errores = errores_ast;
 exports.parser = gramatica;
 exports.Parser = gramatica.Parser;
 exports.parse = function () { return gramatica.parse.apply(gramatica, arguments); };
