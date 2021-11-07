@@ -1,0 +1,7 @@
+Agregar Linea para errores
+
+AL PRINCIPIO
+var errores_ast = [];
+
+EN EXPORT
+exports.errores = errores_ast;
